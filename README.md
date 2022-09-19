@@ -1,9 +1,4 @@
-# Node.js with MongoDB and Docker Demo
-
-Application demo designed to show how Node.js and MongoDB can be run in Docker containers. 
-The app uses Mongoose to create a simple database that stores Docker commands and examples. 
-
-Interested in learning more about Docker? Visit https://www.pluralsight.com/courses/docker-web-development to view my Docker for Web Developers course.
+# Epoch Fighters demo backend
 
 ### Starting the Application with Docker Containers:
 

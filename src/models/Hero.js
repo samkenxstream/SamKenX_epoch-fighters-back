@@ -9,11 +9,11 @@ const characteristicsSchema = Schema({
 });
 
 const heroSchema = Schema({
-    id: { type: ObjectId, required: true },
+    id: { type: String, required: false }, // NFT id
     name: { type: String, required: true },
     characteristics: characteristicsSchema
 });
 
-const HeroModel = mongoose.model('hero', heroSchema);
+const HeroModel = mongoose.model('heroes', heroSchema);
 
 module.exports = HeroModel;

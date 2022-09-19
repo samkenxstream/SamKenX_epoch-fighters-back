@@ -29,7 +29,6 @@ const dataInitializer = function () {
 
   };
 
-
   return {
     initializeData: initializeData
   };

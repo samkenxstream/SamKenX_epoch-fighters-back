@@ -1,5 +1,7 @@
 const HeroController = require('./HeroController');
+const AuthController = require('./UserController');
 
 module.exports =  {
-  HeroController
+  "hero" : HeroController,
+  "user": AuthController
 };
