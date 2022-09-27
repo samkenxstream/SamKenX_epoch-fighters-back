@@ -7,8 +7,8 @@ const cors = require('cors');
 const controllers = require('./controllers');
 
 const port = process.env.PORT || 3000;
-const config = require('./lib/configLoader');
-const db = require('./lib/database');
+const config = require('./devops/configLoader');
+const db = require('./db/database');
 
 const app = express();
 

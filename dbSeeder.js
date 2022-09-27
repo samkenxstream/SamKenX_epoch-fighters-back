@@ -1,6 +1,6 @@
-const dataInitializer = require('./lib/dataSeeder');
+const dataInitializer = require('./devops/dataSeeder');
 const config = require('./config/config.development.json');
-const db = require('./lib/database');
+const db = require('./devops/database');
 
 db.init(config.databaseConfig);
 
