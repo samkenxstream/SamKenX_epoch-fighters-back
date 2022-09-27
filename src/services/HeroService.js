@@ -1,12 +1,13 @@
 const repository = require("../repositories/HeroesRepository");
 
-const HeroService = {
-  getHeroesList: () => {
+class HeroService {
+  getHeroesList() {
     return repository.getHeroesList();
-  },
-  addHero: (hero) => {
+  }
+
+  addHero(hero) {
     return repository.addHeroItem(hero);
   }
-};
+}
 
-module.exports = HeroService;
+module.exports = new HeroService();

@@ -33,7 +33,7 @@ class UserService {
   }
 
   async tokenIsActive(token) {
-    const user = await repository.getUserByAddress(token);
+    const user = await repository.getUserByToken(token);
     return !!user && DateTime.fromISO(user.expireAt) > DateTime.now();
   }
 

@@ -6,6 +6,10 @@ class UsersRepository {
     return UserModel.where().findOne({address}).exec();
   }
 
+  getUserByToken (token) {
+    return UserModel.where().findOne({token}).exec();
+  }
+
   getAllUsers () {
     return UserModel.find().exec();
   }
