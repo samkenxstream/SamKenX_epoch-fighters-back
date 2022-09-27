@@ -1,6 +1,6 @@
-const dataInitializer = require('./devops/dataSeeder');
-const config = require('./config/config.development.json');
-const db = require('./devops/database');
+const dataInitializer = require('./DataInitializer');
+const config = require('../../../config/config.development.json');
+const db = require('../DataBase');
 
 db.init(config.databaseConfig);
 
@@ -13,3 +13,5 @@ dataInitializer.initializeData(function(err) {
       console.log('Data Initialized!')
   }
 });
+
+// node src/db/seed/dbSeeder.js

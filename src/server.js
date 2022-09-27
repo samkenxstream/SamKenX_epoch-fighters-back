@@ -8,7 +8,7 @@ const controllers = require('./controllers');
 
 const port = process.env.PORT || 3000;
 const config = require('./devops/configLoader');
-const db = require('./db/database');
+const db = require('./db/DataBase');
 
 const app = express();
 

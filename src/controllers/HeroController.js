@@ -13,10 +13,9 @@ router.get('/', async (req, res, next) => {
       .status(200)
       .json(heroesList);
   } catch (e) {
-    console.error(e);
-    // res
-    //   .status(500)
-    //   .json({error: e.message});
+    res
+      .status(500)
+      .json({error: e.message});
   }
 });
 

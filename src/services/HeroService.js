@@ -8,6 +8,10 @@ class HeroService {
   addHero(hero) {
     return repository.addHeroItem(hero);
   }
+
+  makeRandomAttributes() {
+
+  }
 }
 
 module.exports = new HeroService();
