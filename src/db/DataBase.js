@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const plugins = require('./plugins');
 
 const options = {
   promiseLibrary: global.Promise,
@@ -15,7 +14,6 @@ class DataBase {
   init(config) {
     console.log('Trying to connect to ' + config.host + '/' + config.database + ' MongoDB database');
 
-    this.applyPlugins();
     const connectionString = `mongodb://${config.host}/${config.database}`;
     mongoose.connect(connectionString, options);
     this.connection = mongoose.connection;
@@ -24,10 +22,6 @@ class DataBase {
       console.log('db connection open');
     });
     return this.connection;
-  }
-
-  applyPlugins() {
-    plugins.forEach(plugin => mongoose.plugin(plugin));
   }
 
   close() {

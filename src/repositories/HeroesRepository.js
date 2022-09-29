@@ -5,9 +5,13 @@ class HeroesRepository {
     return HeroModel.find();
   }
 
-  addHeroItem(hero) {
+  getHeroByToken(token) {
+    return HeroModel.findOne({token});
+  }
+
+  async addHeroItem(hero) {
     const command = new HeroModel(hero);
-    command.save()
+    return await command.save();
   }
 }
 

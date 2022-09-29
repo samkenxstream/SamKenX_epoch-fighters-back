@@ -5,6 +5,13 @@ class BodyPartRepository {
     return BodyPart.find();
   }
 
+  getByTypeAndLevel(partType, level) {
+    return BodyPart.findOne({
+      partId: level,
+      part: partType,
+    });
+  }
+
   addBodyPart(part) {
     const bodyPart = new BodyPart(part);
     return bodyPart.save()

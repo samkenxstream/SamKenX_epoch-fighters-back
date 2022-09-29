@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./src/server.js",
-    "docker:start": "docker compose up --build"
+    "docker:start": "docker compose up --build",
+    "docker:down": "docker compose down"
   },
   "dependencies": {
     "autoprefixer": "^10.4.2",

@@ -12,7 +12,6 @@ const db = require('./db/DataBase');
 
 const app = express();
 
-// create a write stream (in append mode)
 const accessLogStream = fs.createWriteStream(path.join(__dirname, '../logs/access.log'), { flags: 'a' });
 app.use(morgan('combined', { stream: accessLogStream }));
 

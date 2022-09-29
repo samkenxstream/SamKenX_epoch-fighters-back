@@ -20,9 +20,13 @@ router.get('/', async (req, res, next) => {
 });
 
 router.post('/', async (req, res, next) => {
-  const heroPayload = req.body;
+  const payload = req.body;
+  const token = req.headers.token;
+  const hero = {
+    name: payload.name
+  };
   try {
-    const heroItem = heroService.addHero(heroPayload);
+    const heroItem = await heroService.addHero(hero, token);
     res
       .status(200)
       .json(heroItem);
