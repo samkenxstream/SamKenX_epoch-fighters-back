@@ -1,3 +1,4 @@
+const { uniqueNamesGenerator, adjectives, colors, animals, names } = require('unique-names-generator');
 const repository = require("../repositories/HeroesRepository");
 const userRepository = require("../repositories/UsersRepository");
 const bodyPartsRepository = require("../repositories/BodyPartRepository");
@@ -9,12 +10,41 @@ class HeroService {
     return repository.getHeroesList();
   }
 
-  async addHero(hero, token) {
+  getHero(id) {
+    return repository.getHeroById(id);
+  }
+
+  async getHeroByUser(address) {
+    const user = await userRepository.getUserByAddress(address);
+    return repository.getHeroesListByUser(user.id);
+  }
+
+  async addHero(token) {
     const user = await userRepository.getUserByToken(token);
-    hero.userId = user.id;
-    hero.attributes = await this.createAttributes(user.rate);
+    const hero = {
+      name: await this.createHeroName(),
+      userId: user.id,
+      attributes: await this.createAttributes(user.rate)
+    }
 
     return await repository.addHeroItem(hero);
+  }
+
+  async createHeroName() {
+    let name = this.createUniqueName();
+    while (await repository.heroIsExisted(name)) {
+      name = this.createUniqueName();
+    }
+    return name;
+  }
+
+  createUniqueName() {
+    return uniqueNamesGenerator({
+      dictionaries: [adjectives, colors, animals, names],
+      length: 4,
+      separator: ' ',
+      style: 'capital'
+    });
   }
 
   async createAttributes(rate) {

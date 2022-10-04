@@ -5,8 +5,16 @@ class HeroesRepository {
     return HeroModel.find();
   }
 
-  getHeroByToken(token) {
-    return HeroModel.findOne({token});
+  getHeroesListByUser(userId) {
+    return HeroModel.find({userId});
+  }
+
+  getHeroById(id) {
+    return HeroModel.findOne({_id: id});
+  }
+
+  heroIsExisted(name) {
+    return HeroModel.exists({name});
   }
 
   async addHeroItem(hero) {

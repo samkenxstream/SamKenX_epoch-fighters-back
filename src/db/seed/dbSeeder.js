@@ -1,8 +1,7 @@
 const dataInitializer = require('./DataInitializer');
-const config = require('../../../config/config.development.json');
 const db = require('../DataBase');
 
-db.init(config.databaseConfig);
+db.init();
 
 console.log('Initializing Data');
 dataInitializer.initializeData(function(err) {

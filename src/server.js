@@ -7,7 +7,6 @@ const cors = require('cors');
 const controllers = require('./controllers');
 
 const port = process.env.PORT || 3000;
-const config = require('./devops/configLoader');
 const db = require('./db/DataBase');
 
 const app = express();
@@ -21,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 //Pass database config settings
-db.init(config.databaseConfig);
+db.init();
 
 Object.keys(controllers).forEach(controllerName => {
   app.use(`/api/${controllerName}`, controllers[controllerName]);

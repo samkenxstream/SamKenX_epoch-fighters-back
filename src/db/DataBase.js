@@ -6,15 +6,18 @@ const options = {
   useUnifiedTopology: true
 };
 
+const HOST = process.env.DB_HOST;
+const DATABASE = process.env.DB_NAME;
+
 class DataBase {
   constructor() {
     this.connection = null;
   }
 
-  init(config) {
-    console.log('Trying to connect to ' + config.host + '/' + config.database + ' MongoDB database');
+  init() {
+    console.log('Trying to connect to ' + HOST + '/' + DATABASE + ' MongoDB database');
 
-    const connectionString = `mongodb://${config.host}/${config.database}`;
+    const connectionString = `mongodb://${HOST}/${DATABASE}`;
     mongoose.connect(connectionString, options);
     this.connection = mongoose.connection;
     this.connection.on('error', console.error.bind(console, 'connection error:'));

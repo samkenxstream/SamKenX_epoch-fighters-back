@@ -23,7 +23,7 @@ const AttributesSchema = Schema({
 AttributesSchema.plugin(IdRemover);
 
 const HeroSchema = Schema({
-    tokenId: { type: Number, required: false },
+    tokenId: { type: String, required: false },
     userId: {type: ObjectId, required: true},
     name: { type: String, required: true },
     attributes: { type: AttributesSchema, required: true }

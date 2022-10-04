@@ -5,9 +5,8 @@ const bodyPartRepository = require('../../repositories/BodyPartRepository');
 class DataInitializer {
 
   initializeData(callback) {
-    this.addBodyParts();
-
-    callback();
+    this.addBodyParts()
+      .then(callback)
   }
 
   async addBodyParts() {

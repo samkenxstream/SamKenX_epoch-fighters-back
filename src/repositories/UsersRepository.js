@@ -6,16 +6,20 @@ class UsersRepository {
     return UserModel.where().findOne({address}).exec();
   }
 
-  getUserByToken (token) {
-    return UserModel.where().findOne({token}).exec();
-  }
-
   getAllUsers () {
     return UserModel.find().exec();
   }
 
   getUserByToken (token) {
     return UserModel.findOne({token}).exec();
+  }
+
+  getUserAddress (address) {
+    return UserModel.findOne({address}).exec();
+  }
+
+  getUser (id) {
+    return UserModel.findOne({_id: id}).exec();
   }
 
   async updateToken(address, token, expireAt) {
