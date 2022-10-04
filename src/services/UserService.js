@@ -5,6 +5,16 @@ const { DateTime } = require("luxon");
 const CodedError = require('../utils/CodedError');
 
 class UserService {
+  async getUser(addr) {
+    const user = await repository.getUserByAddress(addr);
+    return this.mapUser(user);
+  }
+
+  updateAmount(token, amount) {
+    const user = repository.updateAmount(token, amount);
+    return this.mapUser(user);
+  }
+
   async createOrUpdateUser(loginData) {
     const {address, message, signature} = loginData;
     if(cryptoUtils.checkAddress(address, message, signature)) {
@@ -39,6 +49,11 @@ class UserService {
 
   createToken() {
     return uuid();
+  }
+
+  mapUser(user) {
+    const {id, address, rate, amount} = user;
+    return {id, address, rate, amount};
   }
 }
 

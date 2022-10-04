@@ -26,6 +26,10 @@ class UsersRepository {
     UserModel.updateOne({address}, {token, expireAt});
   }
 
+  async updateAmount(token, newAmount) {
+    UserModel.updateOne({token}, {amount: newAmount});
+  }
+
   addUser(userData) {
     const newUser = new UserModel(userData);
     newUser.save();
