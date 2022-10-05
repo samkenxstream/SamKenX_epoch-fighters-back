@@ -10,8 +10,25 @@ class UserService {
     return this.mapUser(user);
   }
 
-  updateAmount(token, amount) {
-    const user = repository.updateAmount(token, amount);
+  async addAmount(token, amount) {
+    const user = await repository.getUserByToken(token);
+    const newAmount = user.amount + amount;
+    return this.updateAmount(token, newAmount);
+  }
+
+  async subtractAmount(token, amount) {
+    const user = await repository.getUserByToken(token);
+    const newAmount = user.amount - amount;
+    if(newAmount >= 0) {
+      return this.updateAmount(token, newAmount);
+    } else {
+      throw new CodedError(500, "Insufficient funds");
+    }
+  }
+
+  async updateAmount(token, amount) {
+    const user = await repository.updateAmount(token, amount);
+    console.log(user);
     return this.mapUser(user);
   }
 

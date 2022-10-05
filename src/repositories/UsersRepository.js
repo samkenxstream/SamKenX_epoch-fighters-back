@@ -23,11 +23,12 @@ class UsersRepository {
   }
 
   async updateToken(address, token, expireAt) {
-    UserModel.updateOne({address}, {token, expireAt});
+    await UserModel.updateOne({address}, {token, expireAt});
   }
 
   async updateAmount(token, newAmount) {
-    UserModel.updateOne({token}, {amount: newAmount});
+    await UserModel.updateOne({token}, {amount: newAmount});
+    return await this.getUserByToken(token);
   }
 
   addUser(userData) {
