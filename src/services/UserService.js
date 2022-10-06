@@ -14,7 +14,7 @@ class UserService {
     const user = await repository.getUserByToken(token);
     const newAmount = user.amount + amount;
     if (newAmount >= 0) {
-      const user = await repository.updateAmount(token, amount);
+      const user = await repository.updateAmount(token, newAmount);
       return this.mapUser(user);
     } else {
       throw new CodedError(500, "Insufficient funds");
