@@ -1,7 +1,7 @@
 const repository = require("../repositories/UsersRepository");
 const cryptoUtils = require('../utils/crypto');
-const { v4: uuid } = require('uuid');
-const { DateTime } = require("luxon");
+const {v4: uuid} = require('uuid');
+const {DateTime} = require("luxon");
 const CodedError = require('../utils/CodedError');
 
 class UserService {
@@ -13,32 +13,21 @@ class UserService {
   async addAmount(token, amount) {
     const user = await repository.getUserByToken(token);
     const newAmount = user.amount + amount;
-    return this.updateAmount(token, newAmount);
-  }
-
-  async subtractAmount(token, amount) {
-    const user = await repository.getUserByToken(token);
-    const newAmount = user.amount - amount;
-    if(newAmount >= 0) {
-      return this.updateAmount(token, newAmount);
+    if (newAmount >= 0) {
+      const user = await repository.updateAmount(token, amount);
+      return this.mapUser(user);
     } else {
       throw new CodedError(500, "Insufficient funds");
     }
   }
 
-  async updateAmount(token, amount) {
-    const user = await repository.updateAmount(token, amount);
-    console.log(user);
-    return this.mapUser(user);
-  }
-
   async createOrUpdateUser(loginData) {
     const {address, message, signature} = loginData;
-    if(cryptoUtils.checkAddress(address, message, signature)) {
+    if (cryptoUtils.checkAddress(address, message, signature)) {
       const existedUser = await repository.getUserByAddress(address);
       const token = this.createToken();
       const expireAt = DateTime.now().plus({months: 1}).toISO();
-      if(existedUser) {
+      if (existedUser) {
         await repository.updateToken(address, token, expireAt);
       } else {
         const newUserData = {

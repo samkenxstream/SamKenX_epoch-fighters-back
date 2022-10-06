@@ -42,24 +42,11 @@ router.get('/:address', async (req, res, next) => {
   }
 });
 
-router.put('/amount/add', async (req, res, next) => {
+router.put('/amount', async (req, res, next) => {
   try {
     const token = req.headers.token;
     const amount = req.body.amount;
     const user = await userService.addAmount(token, amount);
-    res
-      .status(200)
-      .json(user);
-  } catch (e) {
-    next(e);
-  }
-});
-
-router.put('/amount/subtract', async (req, res, next) => {
-  try {
-    const token = req.headers.token;
-    const amount = req.body.amount;
-    const user = await userService.subtractAmount(token, amount);
     res
       .status(200)
       .json(user);
