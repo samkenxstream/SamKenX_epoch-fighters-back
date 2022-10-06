@@ -7,12 +7,10 @@ const cors = require('cors');
 const controllers = require('./controllers');
 
 const port = process.env.PORT || 3000;
-const config = require('./lib/configLoader');
-const db = require('./lib/database');
+const db = require('./db/DataBase');
 
 const app = express();
 
-// create a write stream (in append mode)
 const accessLogStream = fs.createWriteStream(path.join(__dirname, '../logs/access.log'), { flags: 'a' });
 app.use(morgan('combined', { stream: accessLogStream }));
 
@@ -22,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 //Pass database config settings
-db.init(config.databaseConfig);
+db.init();
 
 Object.keys(controllers).forEach(controllerName => {
   app.use(`/api/${controllerName}`, controllers[controllerName]);

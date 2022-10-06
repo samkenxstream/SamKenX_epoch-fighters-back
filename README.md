@@ -1,5 +1,19 @@
 # Epoch Fighters demo backend
 
+## Initialize environment file:
+Add file with name `.env` (it's not a file extension, it's literally a file name) to the root of the application's folder with a content
+
+```
+DB_HOST=mongodb
+DB_NAME=epochFighters
+SERVER_PRIVATE_KEY=<private key of account with minter role>
+RPC_NODE_URL=https://rpc.ankr.com/polygon_mumbai/
+CHAIN_ID=80001
+CONTRACT_ADDRESS=0xb42C39123017cf9a95cF752eCff09C1893De4d9C
+```
+
+And change placeholder to the private key that you used for deploy contract.
+
 ### Starting the Application with Docker Containers:
 
 1. Install Docker for Windows or Docker for Mac (If you're on Windows 7 install Docker Toolbox: http://docker.com/toolbox).
@@ -8,7 +22,7 @@
 
 3. Run the commands listed in `node.dockerfile` (see the comments at the top of the file).
 
-4. Navigate to http://localhost:3000. Use http://192.168.99.100:8080 in your browser to view the site if using Docker toolbox. This assumes that's the IP assigned to VirtualBox - change if needed.
+4. Navigate to http://localhost:3000.
 
 
 ### Starting the Application with Docker Compose
@@ -29,7 +43,7 @@
 
 8. Type `exit` to leave the sh session
 
-9. Navigate to http://localhost:3000 (http://192.168.99.100:3000 if using Docker Toolbox) in your browser to view the site. This assumes that's the IP assigned to VirtualBox - change if needed.
+9. Navigate to http://localhost:3000
 
 10. Run `docker-compose down` to stop the containers and remove them.
 

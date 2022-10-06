@@ -1,15 +1,26 @@
 const HeroModel = require('../models/Hero');
 
-const HeroesRepository = {
-
-  getHeroesList: async () => {
-    return await HeroModel.find();
-  },
-
-  addHeroItem: async (hero) => {
-    const command = new HeroModel(hero);
-    await command.save()
+class HeroesRepository {
+  getHeroesList() {
+    return HeroModel.find();
   }
-};
 
-module.exports = HeroesRepository;
+  getHeroesListByUser(userId) {
+    return HeroModel.find({userId});
+  }
+
+  getHeroById(id) {
+    return HeroModel.findOne({_id: id});
+  }
+
+  heroIsExisted(name) {
+    return HeroModel.exists({name});
+  }
+
+  async addHeroItem(hero) {
+    const command = new HeroModel(hero);
+    return await command.save();
+  }
+}
+
+module.exports = new HeroesRepository();

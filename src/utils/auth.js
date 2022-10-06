@@ -2,7 +2,8 @@ const userService = require('../services/UserService');
 
 const checkAuth = async (req, res, next) => {
   const token = req.headers.token;
-  if(userService.tokenIsActive(token)) {
+  const isActive = await userService.tokenIsActive(token);
+  if (isActive) {
     next();
   } else {
     res
@@ -10,3 +11,5 @@ const checkAuth = async (req, res, next) => {
       .json({error: "Please sign in first"});
   }
 };
+
+module.exports = checkAuth;

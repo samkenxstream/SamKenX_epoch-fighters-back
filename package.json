@@ -4,13 +4,15 @@
   "private": true,
   "scripts": {
     "start": "node ./src/server.js",
-    "docker:start": "docker compose up --build"
+    "docker:start": "docker compose up --build",
+    "docker:down": "docker compose down"
   },
   "dependencies": {
     "autoprefixer": "^10.4.2",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "debug": "^4.3.3",
+    "ethers": "^5.7.1",
     "express": "^4.17.3",
     "install": "^0.13.0",
     "luxon": "^3.0.3",
@@ -18,6 +20,7 @@
     "morgan": "^1.10.0",
     "npm": "^8.19.1",
     "readline": "1.3.0",
+    "unique-names-generator": "^4.7.1",
     "uuid": "^9.0.0",
     "web3": "^1.7.5"
   },
