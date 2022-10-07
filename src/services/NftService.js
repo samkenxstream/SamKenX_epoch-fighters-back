@@ -22,13 +22,13 @@ class NftService {
     const user = await userRepository.getUserByToken(token);
     const hero = await heroRepository.getHeroById(heroId);
 
-    // if(hero.userId.equals(user._id)) {
+    if(hero.userId.equals(user._id)) {
       const heroNftVoucher = heroNftMapper(hero);
       console.log(heroNftVoucher);
       return this.signData(heroNftVoucher);
-    // } else {
-    //   throw new CodedError(401, `Fighter ${hero.name} doesn't belong to your account`);
-    // }
+    } else {
+      throw new CodedError(401, `Fighter ${hero.name} doesn't belong to your account`);
+    }
   }
 
   async signData(heroNftVoucher) {
