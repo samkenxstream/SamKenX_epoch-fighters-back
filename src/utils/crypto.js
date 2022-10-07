@@ -10,7 +10,12 @@ const recoverAddress = (message, signature) => {
   return web3.eth.accounts.recover(message, signature);
 };
 
+const hexToBytes = (hex) => {
+  return web3.utils.hexToBytes(hex);
+};
+
 module.exports = {
   recoverAddress,
-  checkAddress
+  checkAddress,
+  hexToBytes
 };

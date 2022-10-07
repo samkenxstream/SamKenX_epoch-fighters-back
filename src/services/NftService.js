@@ -3,6 +3,7 @@ const userRepository = require("../repositories/UsersRepository");
 const heroRepository = require("../repositories/HeroesRepository");
 const heroNftMapper = require("../utils/hero-nft-mapper");
 const CodedError = require('../utils/CodedError');
+const {hexToBytes} = require("../utils/crypto");
 
 const SERVER_PRIVATE_KEY = process.env.SERVER_PRIVATE_KEY;
 const RPC_NODE_URL = process.env.RPC_NODE_URL;
@@ -33,7 +34,7 @@ class NftService {
   async signData(heroNftVoucher) {
     const domain = await this.getSigningDomain()
     const types = {
-      TokenInfos: [
+      ItemInfo: [
         {name: "tokenId", type: "uint256"},
         {name: "torso", type: "uint8[2]"},
         {name: "horns", type: "uint8[2]"},
@@ -49,7 +50,7 @@ class NftService {
     const signature = await this.signer._signTypedData(domain, types, heroNftVoucher);
     return {
       ...heroNftVoucher,
-      signature,
+      signature: hexToBytes(signature),
     };
   }
 
@@ -70,7 +71,6 @@ class NftService {
   getSigner(provider) {
     return new ethers.Wallet(SERVER_PRIVATE_KEY, provider);
   }
-
 }
 
 module.exports = new NftService();

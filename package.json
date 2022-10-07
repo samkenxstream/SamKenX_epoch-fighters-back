@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node ./src/server.js",
     "docker:start": "docker compose up --build",
-    "docker:down": "docker compose down"
+    "docker:down": "docker compose down",
+    "docker:clean": "docker system prune"
   },
   "dependencies": {
     "autoprefixer": "^10.4.2",
