@@ -1,17 +1,14 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const {ObjectId} = Schema.Types;
 const RecordMapper = require("../db/plugins/RecordMapper");
 const {AttributesSchema} = require('./AttributesSchema');
 
-const HeroSchema = Schema({
-  tokenId: {type: String, required: false},
-  userId: {type: ObjectId, required: true},
+const EnemySchema = Schema({
   name: {type: String, required: true},
   attributes: {type: AttributesSchema, required: true}
 });
-HeroSchema.plugin(RecordMapper);
+EnemySchema.plugin(RecordMapper);
 
-const HeroModel = mongoose.model('heroes', HeroSchema);
+const EnemyModel = mongoose.model('enemies', EnemySchema);
 
-module.exports = HeroModel;
+module.exports = EnemyModel;

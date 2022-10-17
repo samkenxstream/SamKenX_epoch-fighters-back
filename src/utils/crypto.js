@@ -1,8 +1,6 @@
 const Web3 = require("web3");
 const abi = require("../../assets/epoch-abi.json");
 const EventDecoder = require("../utils/EventDecoder");
-const web3 = require("web3");
-const BigNumber = require('bignumber.js');
 
 const RPC_NODE_URL = process.env.RPC_NODE_URL;
 const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS;
@@ -20,7 +18,7 @@ class Crypto
   }
 
   checkAddress(address, message, signature) {
-    return this.recoverAddress(message, signature) === address;
+    return this.recoverAddress(message, signature).toLowerCase() === address.toLowerCase();
   }
 
   recoverAddress(message, signature) {
